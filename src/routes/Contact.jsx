@@ -5,12 +5,17 @@ import {
   CheckCircleIcon,
   PaperAirplaneIcon,
   ChevronDownIcon,
+  MailIcon,
+  PhoneIcon,
 } from '@heroicons/react/outline';
+import { Menu, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 function Contact() {
   const [loading, setLoading] = useState(false);
+  const [subject, setSubject] = useState('nieuwbouw');
   const [success, setSuccess] = useState(false);
 
   async function insertTicket(name, email, phone, subject, message) {
@@ -36,7 +41,7 @@ function Contact() {
       e.target.name.value,
       e.target.email.value,
       e.target.phone.value,
-      e.target.subject.value,
+      subject,
       e.target.message.value
     );
 
@@ -52,10 +57,14 @@ function Contact() {
     }, 1000);
   }
 
+  function handleSubject(e) {
+    setSubject(e.target.value);
+  }
+
   return (
     <div>
       <Header />
-      <section className="w-screen md:w-7/12 lg:w-5/12 xl:w-1/3 2xl:w-1/3 mx-auto px-6 mt-36 mb-12">
+      <section className="w-screen md:w-7/12 lg:w-5/12 xl:w-1/3 2xl:w-1/3 mx-auto px-6 mt-36 mb-12 selection:bg-cyan-600 selection:text-white">
         <h3 className="text-slate-700 font-semibold text-3xl">
           Contacteer ons
         </h3>
@@ -81,7 +90,7 @@ function Contact() {
                 type="text"
                 name="name"
                 required
-                className="mt-1 px-4 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-full focus:outline-cyan-700 text-sm leading-6"
+                className="mt-1 px-4 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-lg focus:outline-cyan-700 focus:ring-cyan-700 text-sm leading-6"
               />
             </div>
             <div className="mt-5">
@@ -95,7 +104,7 @@ function Contact() {
                 type="email"
                 name="email"
                 required
-                className="mt-1 px-4 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-full focus:outline-cyan-700 text-sm leading-6"
+                className="mt-1 px-4 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-lg focus:outline-cyan-700 focus:ring-cyan-700 text-sm leading-6"
               />
             </div>
             <div className="mt-5">
@@ -110,29 +119,94 @@ function Contact() {
                 type="tel"
                 name="phone"
                 required
-                className="mt-1 px-4 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-full focus:outline-cyan-700 text-sm leading-6"
+                className="mt-1 px-4 focus:text-cyan-900 focus:outline-cyan-700 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-lg text-sm leading-6"
               />
             </div>
             <div className="mt-5">
-              <label
-                className="block ml-4 text-slate-900 text-sm font-medium leading-6"
-                htmlFor="subject"
-              >
-                Onderwerp
-              </label>
+              <Menu as="div" className="relative">
+                {({ open }) => (
+                  <Fragment>
+                    <Menu.Button
+                      type="button"
+                      className="inline-flex items-center justify-between w-36 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-gray-100 focus:ring-cyan-700"
+                    >
+                      {subject.charAt(0).toUpperCase() + subject.slice(1)}
+                      <ChevronDownIcon
+                        className="-mr-1 ml-2 h-4 w-4"
+                        aria-hidden="true"
+                      />
+                    </Menu.Button>
+                    <Transition
+                      show={open}
+                      enter="transform transition duration-100 ease-in"
+                      enterFrom="opacity-0 scale-95"
+                      enterTo="opacity-100 scale-100"
+                      leave="transform transition duration-75 ease-out"
+                      leaveFrom="opacity-100 scale-100"
+                      leaveTo="opacity-0 scale-95"
+                    >
+                      <Menu.Items className="origin-top-left absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
+                        <div className="py-1 w-full">
+                          <Menu.Item>
+                            <button
+                              onClick={handleSubject}
+                              name="subject"
+                              value="nieuwbouw"
+                              className="group w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-cyan-600 hover:text-white"
+                            >
+                              Niewbouw
+                            </button>
+                          </Menu.Item>
+                          <Menu.Item>
+                            <button
+                              onClick={handleSubject}
+                              name="subject"
+                              value="onderhoud"
+                              className="group w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-cyan-600 hover:text-white"
+                            >
+                              Onderhoud
+                            </button>
+                          </Menu.Item>
 
-              <select
-                name="subject"
-                className="mt-1 appearance-none px-4 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-full focus:outline-cyan-700 text-sm leading-6"
-              >
-                <option value="nieuwbouw" selected>
-                  Nieuwbouw
-                </option>
-                <option value="onderhoud">Onderhoud</option>
-                <option value="renovatie">Renovatie</option>
-                <option value="herstelling">Herstelling</option>
-                <option value="overige">Overige</option>
-              </select>
+                          <Menu.Item>
+                            <button
+                              onClick={handleSubject}
+                              name="subject"
+                              value="renovatie"
+                              className="group w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-cyan-600 hover:text-white"
+                            >
+                              Renovatie
+                            </button>
+                          </Menu.Item>
+
+                          <Menu.Item>
+                            <button
+                              onClick={handleSubject}
+                              name="subject"
+                              value="herstelling"
+                              className="group w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-cyan-600 hover:text-white"
+                            >
+                              Herstelling
+                            </button>
+                          </Menu.Item>
+                        </div>
+                        <div className="py-1 w-full">
+                          <Menu.Item>
+                            <button
+                              onClick={handleSubject}
+                              name="subject"
+                              value="overige"
+                              className="group w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-cyan-600 hover:text-white"
+                            >
+                              Overige
+                            </button>
+                          </Menu.Item>
+                        </div>
+                      </Menu.Items>
+                    </Transition>
+                  </Fragment>
+                )}
+              </Menu>
             </div>
             <div className="my-5 w-full">
               <label
@@ -152,7 +226,8 @@ function Contact() {
             {success ? (
               <button
                 type="submit"
-                className="py-2 flex justify-center w-40 bg-green-600 rounded-full text-white items-center text-md font-medium"
+                disabled
+                className="py-2 cursor-pointer flex justify-center w-40 bg-green-600 rounded-full text-white items-center text-md font-medium"
               >
                 Verzonden
                 {loading ? (
@@ -209,10 +284,35 @@ function Contact() {
                     ></path>
                   </svg>
                 ) : (
-                  <PaperAirplaneIcon className="w-4 h-4 text-white ml-2"></PaperAirplaneIcon>
+                  <PaperAirplaneIcon className="w-4 h-4 text-white ml-2" />
                 )}
               </motion.button>
             )}
+            <div className="my-10">
+              <div className="flex items-center">
+                <div className="h-[1px] bg-neutral-200 w-full"></div>
+                <div className="text-sm text-gray-500 px-3">Of</div>
+                <div className="h-[1px] bg-neutral-200 w-full"></div>
+              </div>
+              <div className="flex justify-center my-4 space-x-2">
+                <motion.a
+                  type="submit"
+                  href="mailto:vincent@absolutesolutions.be"
+                  className="py-2 flex hover:rotate-1 appearance-none justify-center w-32 bg-cyan-700 transition ease-in hover:bg-cyan-800 rounded-full text-white items-center text-md font-medium"
+                >
+                  Mail
+                  <MailIcon className="w-4 h-4 text-white ml-2" />
+                </motion.a>
+                <motion.a
+                  type="submit"
+                  href="tel:+32479659639"
+                  className="py-2 hover:rotate-1 flex appearance-none justify-center w-32 bg-neutral-500 transition ease-in hover:bg-neutral-600 rounded-full text-white items-center text-md font-medium"
+                >
+                  Bel
+                  <PhoneIcon className="w-4 h-4 text-white ml-2" />
+                </motion.a>
+              </div>
+            </div>
           </div>
         </form>
       </section>

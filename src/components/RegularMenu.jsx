@@ -8,16 +8,28 @@ function RegularMenu() {
       <motion.a whileHover={{ x: 2 }} className="p-1" href="/">
         Home
       </motion.a>
-      <motion.a whileHover={{ x: 2 }} className="p-1 ml-4" href="/hdpe">
+      <motion.a whileHover={{ x: 2 }} className="p-1 ml-4 lg:ml-8" href="/hdpe">
         HDPE zwembaden
       </motion.a>
-      <motion.a whileHover={{ x: 2 }} className="p-1 ml-4" href="/bouwkundig">
+      <motion.a
+        whileHover={{ x: 2 }}
+        className="p-1 ml-4 lg:ml-8"
+        href="/bouwkundig"
+      >
         Bouwkundige zwembaden
       </motion.a>
-      <motion.a whileHover={{ x: 2 }} className="p-1 ml-4" href="/realisaties">
+      <motion.a
+        whileHover={{ x: 2 }}
+        className="p-1 ml-4 lg:ml-8"
+        href="/realisaties"
+      >
         Realisaties
       </motion.a>
-      <motion.a whileHover={{ x: 2 }} className="p-1 ml-4" href="/contact">
+      <motion.a
+        whileHover={{ x: 2 }}
+        className="p-1 ml-4 lg:ml-8"
+        href="/contact"
+      >
         Contact
       </motion.a>
     </motion.div>
