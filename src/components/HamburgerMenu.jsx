@@ -10,7 +10,7 @@ function HamburgerButton(props) {
   }
 
   return (
-    <div className="flex select-none md:hidden">
+    <div className="flex select-none md:hidden z-30">
       <motion.button
         whileTap={{ scale: 1.1 }}
         onClick={toggleMenu}

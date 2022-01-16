@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
 import {
   CheckCircleIcon,
@@ -52,7 +53,7 @@ function Contact() {
       e.target.name.value = '';
       e.target.email.value = '';
       e.target.phone.value = '';
-      e.target.subject.value = '';
+      setSubject('nieuwbouw');
       e.target.message.value = '';
     }, 1000);
   }
@@ -62,7 +63,7 @@ function Contact() {
   }
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Header />
       <section className="w-screen md:w-7/12 lg:w-5/12 xl:w-1/3 2xl:w-1/3 mx-auto px-6 mt-36 mb-12 selection:bg-cyan-600 selection:text-white">
         <h3 className="text-slate-700 font-semibold text-3xl">
@@ -76,7 +77,7 @@ function Contact() {
         <form
           onSubmit={handleSubmit}
           className="space-y-10 mt-6 accent-cyan-700"
-          autoComplete="on"
+          autoComplete="off"
         >
           <div>
             <div>
@@ -90,37 +91,44 @@ function Contact() {
                 type="text"
                 name="name"
                 required
-                className="mt-1 px-4 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-lg focus:outline-cyan-700 focus:ring-cyan-700 text-sm leading-6"
+                className="mt-1 focus:ring-2 focus:ring-cyan-700 sm:focus:ring-0 px-4 border appearance-none border-gray-200 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-lg focus:outline-cyan-700 text-sm leading-6"
               />
             </div>
             <div className="mt-5">
               <label
-                className="block ml-4 text-slate-900 text-sm font-medium leading-6"
                 htmlFor="email"
+                class="block text-slate-900 text-sm font-medium leading-6"
               >
-                Email
+                <span class="block text-sm font-medium text-slate-700 ml-4">
+                  Email
+                </span>
+                <input
+                  type="email"
+                  name="email"
+                  class="peer mt-1 focus:ring-2 focus:ring-cyan-700 sm:focus:ring-0 px-4 border appearance-none border-gray-200 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-lg focus:outline-cyan-700 text-sm leading-6"
+                />
+                <p class="invisible peer-invalid:visible text-pink-600 text-sm">
+                  Deze email is niet geldig.
+                </p>
               </label>
-              <input
-                type="email"
-                name="email"
-                required
-                className="mt-1 px-4 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-lg focus:outline-cyan-700 focus:ring-cyan-700 text-sm leading-6"
-              />
             </div>
-            <div className="mt-5">
+            <div className="mt-2">
               <label
-                className="block ml-4 text-slate-900 text-sm font-medium leading-6"
                 htmlFor="phone"
+                class="block text-slate-900 text-sm font-medium leading-6"
               >
-                Telefoonnummer
+                <span class="block text-sm font-medium text-slate-700 ml-4">
+                  Telefoonnummer
+                </span>
+                <input
+                  type="tel"
+                  name="phone"
+                  class="peer mt-1 focus:ring-2 focus:ring-cyan-700 sm:focus:ring-0 px-4 border appearance-none border-gray-200 focus:text-cyan-900 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-lg focus:outline-cyan-700 text-sm leading-6"
+                />
+                <p class=" invisible peer-invalid:visible text-pink-600 text-sm">
+                  Deze telefoonnummer is niet geldig.
+                </p>
               </label>
-
-              <input
-                type="tel"
-                name="phone"
-                required
-                className="mt-1 px-4 focus:text-cyan-900 focus:outline-cyan-700 text-slate-500 font-medium py-2 w-full bg-neutral-100 rounded-lg text-sm leading-6"
-              />
             </div>
             <div className="mt-5">
               <Menu as="div" className="relative">
@@ -227,7 +235,7 @@ function Contact() {
               <button
                 type="submit"
                 disabled
-                className="py-2 cursor-pointer flex justify-center w-40 bg-green-600 rounded-full text-white items-center text-md font-medium"
+                className="py-2 focus:outline-none cursor-pointer flex justify-center w-40 bg-green-600 rounded-full text-white items-center text-md font-medium"
               >
                 Verzonden
                 {loading ? (
@@ -259,7 +267,7 @@ function Contact() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 type="submit"
-                className="py-2 flex justify-center w-40 bg-cyan-700 hover:bg-cyan-800 rounded-full text-white items-center text-md font-medium"
+                className="py-2 focus:bg-cyan-800 focus:outline-none flex justify-center w-40 bg-cyan-700 hover:bg-cyan-800 rounded-full text-white items-center text-md font-medium"
               >
                 {loading ? 'Versturen...' : 'Verzend'}
                 {loading ? (
@@ -298,7 +306,7 @@ function Contact() {
                 <motion.a
                   type="submit"
                   href="mailto:vincent@absolutesolutions.be"
-                  className="py-2 flex hover:rotate-1 appearance-none justify-center w-32 bg-cyan-700 transition ease-in hover:bg-cyan-800 rounded-full text-white items-center text-md font-medium"
+                  className="py-2 flex focus:outline-none focus:bg-cyan-800 hover:rotate-1 appearance-none justify-center w-32 bg-cyan-700 transition ease-in hover:bg-cyan-800 rounded-full text-white items-center text-md font-medium"
                 >
                   Mail
                   <MailIcon className="w-4 h-4 text-white ml-2" />
@@ -306,7 +314,7 @@ function Contact() {
                 <motion.a
                   type="submit"
                   href="tel:+32479659639"
-                  className="py-2 hover:rotate-1 flex appearance-none justify-center w-32 bg-neutral-500 transition ease-in hover:bg-neutral-600 rounded-full text-white items-center text-md font-medium"
+                  className="py-2 hover:rotate-1 focus:outline-none focus:bg-neutral-600 flex appearance-none justify-center w-32 bg-neutral-500 transition ease-in hover:bg-neutral-600 rounded-full text-white items-center text-md font-medium"
                 >
                   Bel
                   <PhoneIcon className="w-4 h-4 text-white ml-2" />
@@ -316,6 +324,7 @@ function Contact() {
           </div>
         </form>
       </section>
+      <Footer />
     </div>
   );
 }
