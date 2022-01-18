@@ -42,20 +42,10 @@ function Footer() {
           <div className="lg:flex lg:items-center lg:justify-between mr-8 hidden">
             <h3 className="text-xs">In samenwerking met</h3>
             <a href="https://www.renolit.com/nl/">
-              <img
-                data-aos="fade-left"
-                className="w-24 -ml-3"
-                src={renolit}
-                alt="Renolit"
-              />
+              <img className="w-24 -ml-3" src={renolit} alt="Renolit" />
             </a>
             <a href="http://vanbeers-p.eu/">
-              <img
-                data-aos="fade-left"
-                className="w-24 -ml-3"
-                src={vanbeers}
-                alt="Vanbeers"
-              />
+              <img className="w-24 -ml-3" src={vanbeers} alt="Vanbeers" />
             </a>
           </div>
           <div className="w-0.5 h-24 bg-neutral-300 mr-8"></div>

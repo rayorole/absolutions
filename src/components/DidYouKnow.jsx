@@ -6,7 +6,10 @@ import '../styles/didyouknow.scss';
 function DidYouKnow() {
   return (
     <div className="relative">
-      <ul className="mt-10 py-5 px-[50vw] w-full flex overflow-x-auto gap-8 snap-x no-scrollbar">
+      <h2 className="text-center mt-10 text-stone-400 font-semibold text-xs">
+        &laquo; Sleep om kaart te veranderen &raquo;
+      </h2>
+      <ul className="mt-1 py-5 px-[50vw] w-full flex overflow-x-auto gap-8 snap-x no-scrollbar">
         <li className="snap-center">
           <div className="relative flex-shrink-0 max-w-[95vw] overflow-hidden rounded-3xl">
             <img

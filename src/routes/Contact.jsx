@@ -303,22 +303,22 @@ function Contact() {
                 <div className="h-[1px] bg-neutral-200 w-full"></div>
               </div>
               <div className="flex justify-center my-4 space-x-2">
-                <motion.a
+                <a
                   type="submit"
                   href="mailto:vincent@absolutesolutions.be"
                   className="py-2 flex focus:outline-none focus:bg-cyan-800 hover:rotate-1 appearance-none justify-center w-32 bg-cyan-700 transition ease-in hover:bg-cyan-800 rounded-full text-white items-center text-md font-medium"
                 >
                   Mail
                   <MailIcon className="w-4 h-4 text-white ml-2" />
-                </motion.a>
-                <motion.a
+                </a>
+                <a
                   type="submit"
                   href="tel:+32479659639"
                   className="py-2 hover:rotate-1 focus:outline-none focus:bg-neutral-600 flex appearance-none justify-center w-32 bg-neutral-500 transition ease-in hover:bg-neutral-600 rounded-full text-white items-center text-md font-medium"
                 >
                   Bel
                   <PhoneIcon className="w-4 h-4 text-white ml-2" />
-                </motion.a>
+                </a>
               </div>
             </div>
           </div>

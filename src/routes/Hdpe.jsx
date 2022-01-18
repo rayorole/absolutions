@@ -4,9 +4,14 @@ import Footer from '../components/Footer';
 import Services from '../components/Services';
 import DidYouKnow from '../components/DidYouKnow';
 import About from '../components/About';
+import Faq from '../components/Faq';
 import Gallery from '../components/Gallery';
 import PoolCover from '../assets/images/cover-pool.jpeg';
-import { CheckIcon } from '@heroicons/react/outline';
+import PoolConstruction1 from '../assets/images/pool-construction.jpg';
+import PoolConstruction2 from '../assets/images/pool-construction-2.jpeg';
+import PoolConstruction3 from '../assets/images/pool-construction-3.jpeg';
+import PoolConstruction4 from '../assets/images/pool-construction-4.jpeg';
+import { CheckIcon, MailIcon, PhoneIcon } from '@heroicons/react/outline';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import '../styles/home.scss';
@@ -18,34 +23,35 @@ function Home() {
 
   const features = [
     {
-      name: 'Competitive exchange rates',
+      name: 'Duurzaamheid',
       description: 'Lange levensduur en garantie.',
       icon: CheckIcon,
     },
     {
-      name: 'No hidden fees',
+      name: 'Maatwerk',
       description: 'Volledig op maat.',
       icon: CheckIcon,
     },
     {
-      name: 'Transfers are instant',
+      name: 'Personalisatie',
       description: 'Verschillende kleuren mogelijk (kleurvast).',
       icon: CheckIcon,
     },
     {
-      name: 'Mobile notifications',
-      description: 'Osmosevrij.',
+      name: 'Osmosevrij',
+      description:
+        'Osmose is een proces waarbij door middel van diffusie een vloeistof met opgeloste stoffen door een semipermeabel membraan stroomt.',
       icon: CheckIcon,
     },
     {
-      name: 'Testing',
+      name: 'Multifunctioneel',
       description: 'Verschillende aansluitingen mogelijk.',
       icon: CheckIcon,
     },
   ];
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden selection:bg-cyan-600 selection:text-white">
       <Header />
       <div className="py-12 mt-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,6 +87,65 @@ function Home() {
             </dl>
           </div>
         </div>
+      </div>
+      <div className="py-12 px-8 bg-neutral-50 border border-t-neutral-100 md:flex md:justify-between items-center">
+        <div>
+          <h2 className="text-base text-cyan-700 font-bold tracking-wide">
+            Aarzel ons niet te contacteren
+          </h2>
+          <p className="text-neutral-600 font-semibold text-xs">
+            Wij luisteren naar iedere klant en streven naar kwaliteit.
+          </p>
+        </div>
+        <div className="flex items-center space-x-2 my-4">
+          <a
+            type="submit"
+            href="mailto:vincent@absolutesolutions.be"
+            className="py-2 flex focus:outline-none focus:bg-cyan-800 hover:rotate-1 appearance-none justify-center w-32 bg-cyan-700 transition ease-in hover:bg-cyan-800 rounded-full text-white items-center text-md font-medium"
+          >
+            Mail
+            <MailIcon className="w-4 h-4 text-white ml-2" />
+          </a>
+          <a
+            type="submit"
+            href="tel:+32479659639"
+            className="py-2 hover:rotate-1 focus:outline-none focus:bg-neutral-600 flex appearance-none justify-center w-32 bg-neutral-500 transition ease-in hover:bg-neutral-600 rounded-full text-white items-center text-md font-medium"
+          >
+            Bel
+            <PhoneIcon className="w-4 h-4 text-white ml-2" />
+          </a>
+        </div>
+      </div>
+      <Faq />
+      <div className="py-12 px-8 bg-neutral-50 border border-t-neutral-100 grid grid-cols-2 grid-rows-2 gap-4">
+        <a href={PoolConstruction1} target="_blank" className="mx-auto">
+          <img
+            className="rounded md:w-96"
+            src={PoolConstruction1}
+            alt="Pool construction one"
+          />
+        </a>
+        <a href={PoolConstruction2} target="_blank" className="mx-auto">
+          <img
+            className="rounded md:w-96"
+            src={PoolConstruction2}
+            alt="Pool construction two"
+          />
+        </a>
+        <a href={PoolConstruction3} target="_blank" className="mx-auto">
+          <img
+            className="rounded md:w-96"
+            src={PoolConstruction3}
+            alt="Pool construction three"
+          />
+        </a>
+        <a href={PoolConstruction4} target="_blank" className="mx-auto">
+          <img
+            className="rounded md:w-96"
+            src={PoolConstruction4}
+            alt="Pool construction four"
+          />
+        </a>
       </div>
       <Footer />
     </div>
